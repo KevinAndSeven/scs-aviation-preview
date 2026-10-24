@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import TBD from '../components/TBD.astro';
+import { BUSINESS } from '../config';
+---
+<Base title="Privacy Policy | SCS Aviation" description="How SCS Aviation handles information you share through this website.">
+  <section class="page-hero"><div class="wrap"><span class="eyebrow">Legal</span><h1>Privacy Policy</h1><p>Effective date: <TBD label="date" /></p></div></section>
+  <section class="section">
+    <div class="wrap prose">
+      <p>This policy explains what SCS Aviation collects through this website and how we use it.</p>
+      <h2>What we collect</h2>
+      <p>When you send a quote request, we collect what you enter. That is your name, email, phone, aircraft model, tail number, the work needed, and your preferred timing.</p>
+      <h2>How we use it</h2>
+      <p>We use it to reply to your request and to provide service. We do not sell your information.</p>
+      <h2>Service providers</h2>
+      <p>Our form is delivered by a third-party form service (Web3Forms), which passes your request to our email. Maps on this site are provided by Google. These providers have their own privacy policies.</p>
+      <h2>Analytics and cookies</h2>
+      <p><TBD label="analytics tool and cookie use, if any" /></p>
+      <h2>How long we keep it</h2>
+      <p><TBD label="retention period" /></p>
+      <h2>Your choices</h2>
+      <p>You can ask us to see, correct, or delete your information. Email <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a> or call <a href={`tel:${BUSINESS.phoneE164}`}>{BUSINESS.phoneDisplay}</a>.</p>
+      <h2>Contact</h2>
+      <p>SCS Aviation, {BUSINESS.street}, {BUSINESS.city}, {BUSINESS.region} {BUSINESS.postalCode}.</p>
+      <p class="muted"><TBD label="legal review before launch" /></p>
+    </div>
+  </section>
+</Base>

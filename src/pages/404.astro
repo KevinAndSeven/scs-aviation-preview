@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../config';
+---
+<Base title="Page not found | SCS Aviation" description="This page could not be found.">
+  <section class="page-hero"><div class="wrap"><h1>Off course.</h1><p>That page is not here. Head home or request a quote.</p>
+  <p style="margin-top:1.4rem"><a class="btn btn-accent" href={withBase('/')}>Home</a> <a class="btn btn-ghost" href={withBase('/request-a-quote/')}>Request a quote</a></p></div></section>
+</Base>

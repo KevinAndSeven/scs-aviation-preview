@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import JetArt from '../components/JetArt.astro';
+import TBD from '../components/TBD.astro';
+import CTA from '../components/CTA.astro';
+import { BUSINESS, withBase } from '../config';
+---
+<Base title="Cessna Citation Maintenance in DeLand, FL (KDED) | SCS Aviation"
+  description="SCS Aviation maintains legacy Cessna Citation jets at Hangar 14, DeLand Municipal Airport (KDED), DeLand, Florida. Request a quote or call (386) 785-9997.">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow">DeLand, Florida | {BUSINESS.airportCode}</span>
+        <h1>Your legacy Citation deserves a <em>Citation shop.</em></h1>
+        <p class="lede">SCS Aviation maintains legacy Cessna Citation jets. We work out of Hangar 14 at DeLand Municipal Airport. Tell us about your aircraft and get a clear quote.</p>
+        <div class="hero-actions">
+          <a class="btn btn-accent" href={withBase('/request-a-quote/')}>Request a quote</a>
+          <a class="btn btn-ghost" href={`tel:${BUSINESS.phoneE164}`}>Call {BUSINESS.phoneDisplay}</a>
+        </div>
+        <ul class="hero-meta">
+          <li>Legacy Cessna Citation focus</li>
+          <li>Hangar 14, KDED</li>
+          <li>Central Florida</li>
+        </ul>
+      </div>
+      <JetArt />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why SCS Aviation</span>
+        <h2>One aircraft family. Full attention.</h2>
+        <p class="muted">Legacy Citations have their own systems, quirks, and paperwork. A shop that focuses on them knows where to look.</p>
+      </div>
+      <div class="grid grid-4">
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div>
+          <h3>Citation focus</h3>
+          <p>Our work centers on legacy Cessna Citation jets. That is the whole idea.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7m0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5"/></svg></div>
+          <h3>Easy to reach at KDED</h3>
+          <p>Hangar 14 at DeLand Municipal Airport. A short hop for Central Florida operators.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></div>
+          <h3>A direct line</h3>
+          <p>Call or email the shop directly. Your request goes straight to SCS Aviation.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 1 3 5v6c0 5.6 3.8 10.7 9 12 5.2-1.3 9-6.4 9-12V5z"/></svg></div>
+          <h3>Credentials</h3>
+          <p><TBD label="certificates and ratings, as approved" /></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Services</span>
+        <h2>What your Citation needs, in one place.</h2>
+        <p class="muted">The final service list is being confirmed. Not sure what you need? Describe it in a quote request.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><h3><TBD label="Scheduled inspections" /></h3><p class="muted"><TBD label="short description" /></p></div>
+        <div class="card"><h3><TBD label="Troubleshooting and repairs" /></h3><p class="muted"><TBD label="short description" /></p></div>
+        <div class="card"><h3><TBD label="Pre-buy inspections" /></h3><p class="muted"><TBD label="short description" /></p></div>
+      </div>
+      <p style="margin-top:1.6rem"><a class="btn btn-outline" href={withBase('/services/')}>See all services</a></p>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>From first call to wheels up.</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Tell us about your aircraft</h3><p>Send the model, tail number, and the work you need. Or just call.</p></li>
+        <li><h3>Get a clear plan</h3><p>We review your request and follow up with questions and a quote.</p></li>
+        <li><h3>Fly in to KDED</h3><p>Bring your Citation to Hangar 14 at DeLand Municipal Airport.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Location</span>
+        <h2>Hangar 14, DeLand Municipal Airport.</h2>
+        <p>{BUSINESS.street}<br />{BUSINESS.city}, {BUSINESS.region} {BUSINESS.postalCode}</p>
+        <p class="muted">Hours: <TBD label="shop hours" /></p>
+        <p><a class="btn btn-outline" href={withBase('/contact/')}>Map and directions</a></p>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="eyebrow">What owners say</span>
+        <TBD block label="real customer reviews, used with permission only" />
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Base>

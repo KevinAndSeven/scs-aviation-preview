@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import TBD from '../components/TBD.astro';
+import CTA from '../components/CTA.astro';
+import { withBase } from '../config';
+const services = [
+  'Scheduled inspections', 'Troubleshooting and repairs', 'Pre-buy inspections',
+  'Avionics work', 'AOG and mobile support', 'Parts sourcing',
+];
+---
+<Base title="Citation Maintenance Services | SCS Aviation, DeLand FL (KDED)"
+  description="Maintenance services for legacy Cessna Citation jets at SCS Aviation, Hangar 14, DeLand Municipal Airport (KDED), DeLand, Florida.">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Services</span>
+      <h1>Maintenance for legacy Cessna Citation jets.</h1>
+      <p>Everything here is built around one aircraft family. Tell us what your Citation needs and we will scope it with you.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Service list</h2>
+        <p class="muted">Each service below is a placeholder until the shop confirms it.</p>
+      </div>
+      <div class="grid grid-3">
+        {services.map((s) => (
+          <div class="card">
+            <h3><TBD label={s} /></h3>
+            <p class="muted"><TBD label="what is included" /></p>
+            <a href={withBase('/request-a-quote/')}>Request a quote</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="wrap split">
+      <div>
+        <h2>Not sure what you need?</h2>
+        <p>Describe the squawk, the due item, or the project. Add your tail number. We will follow up with questions and next steps.</p>
+        <a class="btn btn-accent" href={withBase('/request-a-quote/')}>Start a request</a>
+      </div>
+      <div class="card">
+        <h3>Helpful to include</h3>
+        <ul class="checklist">
+          <li>Aircraft model and tail number</li>
+          <li>Current squawks or due items</li>
+          <li>When you need the aircraft back</li>
+          <li>Best way to reach you</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <CTA />
+</Base>

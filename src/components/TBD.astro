@@ -1,0 +1,7 @@
+---
+// Visible placeholder for any fact not yet verified.
+interface Props { label: string; block?: boolean }
+const { label, block = false } = Astro.props;
+const Tag = block ? 'div' : 'span';
+---
+<Tag class:list={['tbd', { 'tbd-block': block }]} title="To be confirmed before launch">[TBD: {label}]</Tag>

@@ -1,0 +1,15 @@
+---
+interface Props { size?: number; tone?: 'light' | 'dark' }
+const { size = 40, tone = 'light' } = Astro.props;
+const text = tone === 'light' ? '#FFFFFF' : '#0B1B2E';
+const sub = tone === 'light' ? '#C9D2DC' : '#5B6B7C';
+---
+<svg class="logo" role="img" aria-label="SCS Aviation" height={size} viewBox="0 0 260 64" xmlns="http://www.w3.org/2000/svg">
+  <title>SCS Aviation</title>
+  <g>
+    <path d="M4 44 L58 14 L46 30 L60 46 L40 38 Z" fill="#F2A33A"/>
+    <path d="M14 50 L52 50" stroke={sub} stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  </g>
+  <text x="72" y="40" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="36" letter-spacing="2" fill={text}>SCS</text>
+  <text x="74" y="58" font-family="'Helvetica Neue',Arial,sans-serif" font-weight="600" font-size="12.5" letter-spacing="7.2" fill={sub}>AVIATION</text>
+</svg>

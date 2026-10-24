@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import { BUSINESS, FULL_ADDRESS, NAV, SITE_URL, PROTOTYPE_MODE, withBase } from '../config';
+
+interface Props { title: string; description: string; path?: string; jsonld?: object | null }
+const { title, description, jsonld = null } = Astro.props;
+const origin = Astro.site ?? Astro.url;
+const canonical = new URL(Astro.url.pathname, origin).href;
+const ogImage = new URL(withBase('/og.png'), origin).href;
+const current = Astro.url.pathname;
+const nav = NAV.map((item) => ({ ...item, href: withBase(item.href) }));
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE_URL}/#business`,
+  name: BUSINESS.name,
+  description: `${BUSINESS.focus} at ${BUSINESS.airport} (${BUSINESS.airportCode}) in ${BUSINESS.city}, ${BUSINESS.region}.`,
+  url: SITE_URL,
+  telephone: BUSINESS.phoneE164,
+  email: BUSINESS.email,
+  image: ogImage,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: BUSINESS.street,
+    addressLocality: BUSINESS.city,
+    addressRegion: BUSINESS.region,
+    postalCode: BUSINESS.postalCode,
+    addressCountry: BUSINESS.country,
+  },
+  areaServed: ['DeLand, FL', 'Volusia County, FL', 'Central Florida'],
+};
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+  <meta name="theme-color" content="#0B1B2E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SCS Aviation" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="geo.region" content="US-FL" />
+  <meta name="geo.placename" content="DeLand" />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
+  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {PROTOTYPE_MODE && (
+    <div class="proto-bar" role="note">Prototype. Items marked <span class="tbd">[TBD]</span> are placeholders to confirm before launch.</div>
+  )}
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href={withBase('/')} aria-label="SCS Aviation home"><Logo size={42} /></a>
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          {nav.map((n) => <li><a href={n.href} aria-current={current === n.href ? 'page' : undefined}>{n.label}</a></li>)}
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="header-phone" href={`tel:${BUSINESS.phoneE164}`}>{BUSINESS.phoneDisplay}</a>
+        <a class="btn btn-accent btn-sm" href={withBase('/request-a-quote/')}>Request a quote</a>
+      </div>
+    </div>
+    <nav class="mobile-nav" aria-label="Mobile">
+      <ul>
+        {nav.map((n) => <li><a href={n.href} aria-current={current === n.href ? 'page' : undefined}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main"><slot /></main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <Logo size={40} />
+        <p class="muted">{BUSINESS.focus}.<br />{BUSINESS.airport} ({BUSINESS.airportCode}), {BUSINESS.city}, Florida.</p>
+      </div>
+      <address>
+        <strong>Visit</strong><br />
+        {BUSINESS.street}<br />{BUSINESS.city}, {BUSINESS.region} {BUSINESS.postalCode}
+      </address>
+      <div>
+        <strong>Reach us</strong><br />
+        <a href={`tel:${BUSINESS.phoneE164}`}>{BUSINESS.phoneDisplay}</a><br />
+        <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
+      </div>
+      <div>
+        <strong>Site</strong>
+        <ul class="footer-links">
+          <li><a href={withBase('/request-a-quote/')}>Request a quote</a></li>
+          {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+          <li><a href={withBase('/privacy/')}>Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-base">
+      <span>© {new Date().getFullYear()} SCS Aviation. All rights reserved.</span>
+      <span class="muted">{FULL_ADDRESS}</span>
+    </div>
+  </footer>
+
+  <div class="call-bar" role="region" aria-label="Quick contact">
+    <a class="call-bar-call" href={`tel:${BUSINESS.phoneE164}`}>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+      Call now
+    </a>
+    <a class="call-bar-quote" href={withBase('/request-a-quote/')}>Request a quote</a>
+  </div>
+</body>
+</html>

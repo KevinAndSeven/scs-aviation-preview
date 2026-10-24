@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import TBD from '../components/TBD.astro';
+import { BUSINESS } from '../config';
+---
+<Base title="Request a Citation Maintenance Quote | SCS Aviation, DeLand FL"
+  description="Request a maintenance quote for your legacy Cessna Citation from SCS Aviation at DeLand Municipal Airport (KDED). Takes about two minutes.">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Request a quote</span>
+      <h1>Tell us about your Citation.</h1>
+      <p>About two minutes. Your request goes straight to the shop.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap split" style="align-items:start">
+      <QuoteForm />
+      <div>
+        <h2>What happens next</h2>
+        <ul class="checklist">
+          <li>We read your request and check the details.</li>
+          <li>We reach out with questions or a quote.</li>
+          <li>We set a time for your aircraft at Hangar 14, KDED.</li>
+        </ul>
+        <p class="muted">Typical reply time: <TBD label="response time" /></p>
+        <div class="card">
+          <h3>Rather call?</h3>
+          <p><a href={`tel:${BUSINESS.phoneE164}`} style="font-size:1.3rem;font-weight:800;text-decoration:none">{BUSINESS.phoneDisplay}</a></p>
+          <p class="muted" style="margin:0">Email <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
