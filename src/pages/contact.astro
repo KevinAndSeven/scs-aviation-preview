@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import TBD from '../components/TBD.astro';
+import CTA from '../components/CTA.astro';
+import { BUSINESS, FULL_ADDRESS } from '../config';
+const mapQuery = encodeURIComponent(`SCS Aviation, ${FULL_ADDRESS}`);
+const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(FULL_ADDRESS)}&z=15&output=embed`;
+const mapsLink = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+---
+<Base title="Contact and Location | SCS Aviation, Hangar 14, DeLand FL (KDED)"
+  description="Find SCS Aviation at 921 Biscayne Blvd, Hangar 14, DeLand Municipal Airport (KDED), DeLand, FL 32724. Call (386) 785-9997.">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Contact and location</span>
+      <h1>Find us at KDED.</h1>
+      <p>Hangar 14 at DeLand Municipal Airport, DeLand, Florida.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap split" style="align-items:start">
+      <ul class="info-list">
+        <li><strong>Phone</strong><a href={`tel:${BUSINESS.phoneE164}`}>{BUSINESS.phoneDisplay}</a></li>
+        <li><strong>Email</strong><a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a></li>
+        <li><strong>Address</strong><address style="font-style:normal">{BUSINESS.street}<br />{BUSINESS.city}, {BUSINESS.region} {BUSINESS.postalCode}</address></li>
+        <li><strong>Airport</strong>{BUSINESS.airport} ({BUSINESS.airportCode})</li>
+        <li><strong>Hours</strong><TBD label="shop hours" /></li>
+        <li><strong>Arriving by air</strong><TBD label="ramp and parking directions" /></li>
+        <li><a class="btn btn-outline" href={mapsLink} rel="noopener" target="_blank">Open in Google Maps</a></li>
+      </ul>
+      <iframe class="map" width="600" height="450" title={`Map of ${FULL_ADDRESS}`} src={mapSrc} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+  <CTA />
+</Base>

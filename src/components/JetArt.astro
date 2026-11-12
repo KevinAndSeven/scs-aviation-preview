@@ -1,0 +1,30 @@
+---
+// Abstract SVG art. A generic swept-wing jet in plan view with flight path lines.
+---
+<svg class="jet-art" viewBox="0 0 600 420" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="trail" x1="0" x2="1">
+      <stop offset="0" stop-color="#F2A33A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#F2A33A" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E7ECF1"/>
+      <stop offset="1" stop-color="#9AA8B6"/>
+    </linearGradient>
+  </defs>
+  <g stroke="#C9D2DC" stroke-opacity=".12" fill="none">
+    <circle cx="380" cy="200" r="90"/><circle cx="380" cy="200" r="150"/><circle cx="380" cy="200" r="210"/>
+    <path d="M380 -10 V410 M170 200 H600"/>
+  </g>
+  <path d="M0 330 C 140 300, 230 260, 330 215" stroke="url(#trail)" stroke-width="3" fill="none"/>
+  <path d="M0 360 C 150 330, 250 280, 345 228" stroke="url(#trail)" stroke-width="2" fill="none" opacity=".6"/>
+  <g transform="translate(380 200) rotate(-28)">
+    <path d="M150 0 C 140 -9, 110 -12, 80 -12 L -90 -11 C -110 -10, -122 -6, -128 0 C -122 6, -110 10, -90 11 L 80 12 C 110 12, 140 9, 150 0 Z" fill="url(#body)"/>
+    <path d="M30 -11 L -30 -118 L -52 -118 L -28 -11 Z" fill="url(#body)"/>
+    <path d="M30 11 L -30 118 L -52 118 L -28 11 Z" fill="url(#body)"/>
+    <path d="M-92 -10 L -118 -48 L -130 -48 L -116 -9 Z M-92 10 L -118 48 L -130 48 L -116 9 Z" fill="url(#body)"/>
+    <rect x="-80" y="-24" width="34" height="12" rx="6" fill="#7D8C9B"/>
+    <rect x="-80" y="12" width="34" height="12" rx="6" fill="#7D8C9B"/>
+    <path d="M118 -6 C 128 -4, 134 -2, 136 0 C 134 2, 128 4, 118 6 Z" fill="#0B1B2E" opacity=".75"/>
+  </g>
+</svg>

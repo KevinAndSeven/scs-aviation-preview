@@ -1,0 +1,100 @@
+---
+import { AIRCRAFT_OPTIONS, BUSINESS, PROTOTYPE_MODE, WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT, withBase } from '../config';
+---
+<form id="quote-form" class="form-card" action={WEB3FORMS_ENDPOINT} method="POST" novalidate
+  data-prototype={PROTOTYPE_MODE ? 'true' : 'false'} data-endpoint={WEB3FORMS_ENDPOINT}>
+  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+  <input type="hidden" name="subject" value="New quote request from the SCS Aviation website" />
+  <input type="hidden" name="from_name" value="SCS Aviation website" />
+  <!-- Honeypot. Real people never see or fill this. Web3Forms drops submissions where it is checked. -->
+  <div class="hp" aria-hidden="true">
+    <label for="botcheck">Leave this empty</label>
+    <input type="checkbox" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off" />
+    <label for="company_website">Website</label>
+    <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="form-grid">
+    <div class="field">
+      <label for="f-name">Name</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required />
+    </div>
+    <div class="field">
+      <label for="f-email">Email</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required />
+    </div>
+    <div class="field">
+      <label for="f-phone">Phone</label>
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+    </div>
+    <div class="field">
+      <label for="f-model">Aircraft model</label>
+      <select id="f-model" name="aircraft_model" required>
+        <option value="">Select your Citation</option>
+        {AIRCRAFT_OPTIONS.map((m) => <option value={m}>{m}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-tail">Tail number</label>
+      <input id="f-tail" name="tail_number" type="text" placeholder="N12345" autocapitalize="characters" pattern="[A-Za-z0-9-]{2,8}" required />
+    </div>
+    <div class="field">
+      <label for="f-timing">Preferred timing</label>
+      <select id="f-timing" name="preferred_timing" required>
+        <option value="">Choose one</option>
+        <option>As soon as possible</option>
+        <option>Within 2 weeks</option>
+        <option>Within 1 to 3 months</option>
+        <option>Just planning ahead</option>
+      </select>
+    </div>
+    <div class="field full">
+      <label for="f-work">Work needed</label>
+      <textarea id="f-work" name="work_needed" required placeholder="Describe the inspection, squawk, or project. Include due dates if you have them."></textarea>
+    </div>
+  </div>
+
+  <button class="btn btn-accent" type="submit" style="margin-top:1.2rem;width:100%">Send my quote request</button>
+  <p class="form-note">Prefer to talk? Call <a href={`tel:${BUSINESS.phoneE164}`}>{BUSINESS.phoneDisplay}</a>. We use your details only to reply to this request. See our <a href={withBase('/privacy/')}>Privacy Policy</a>.</p>
+  <div class="form-status" role="status" aria-live="polite" tabindex="-1"></div>
+</form>
+
+<script>
+  const form = document.getElementById('quote-form') as HTMLFormElement | null;
+  if (form) {
+    const status = form.querySelector('.form-status') as HTMLElement;
+    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+    const show = (cls: 'ok' | 'err', msg: string) => { status.className = `form-status ${cls}`; status.textContent = msg; status.focus?.(); };
+    const success = 'Thank you. Your request is in. We will be in touch soon.';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const bot = (form.querySelector('#botcheck') as HTMLInputElement).checked
+        || (form.querySelector('#company_website') as HTMLInputElement).value !== '';
+      if (bot) { show('ok', success); form.reset(); return; } // silently drop spam
+
+      if (form.dataset.prototype === 'true') {
+        show('ok', success + ' (Prototype mode: nothing was sent.)');
+        form.reset();
+        return;
+      }
+
+      btn.disabled = true; btn.textContent = 'Sending...';
+      try {
+        const data = new FormData(form);
+        data.delete('company_website');
+        
+        const res = await fetch(form.dataset.endpoint!, { method: 'POST', headers: { Accept: 'application/json' }, body: data });
+        const json = await res.json();
+        if (res.ok && json.success) { show('ok', success); form.reset(); }
+        else throw new Error(json.message || 'Send failed');
+      } catch {
+        show('err', 'Sorry, that did not go through. Please call us or email us instead.');
+      } finally {
+        btn.disabled = false; btn.textContent = 'Send my quote request';
+      }
+    });
+  }
+</script>

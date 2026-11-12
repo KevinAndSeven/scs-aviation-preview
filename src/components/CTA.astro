@@ -1,0 +1,17 @@
+---
+import { BUSINESS, withBase } from '../config';
+interface Props { title?: string; text?: string }
+const { title = 'Ready when your Citation is.', text = 'Tell us about your aircraft and the work it needs. A request takes about two minutes.' } = Astro.props;
+---
+<section class="cta-band">
+  <div class="wrap cta-inner">
+    <div>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-accent" href={withBase('/request-a-quote/')}>Request a quote</a>
+      <a class="btn btn-ghost" href={`tel:${BUSINESS.phoneE164}`}>Call {BUSINESS.phoneDisplay}</a>
+    </div>
+  </div>
+</section>

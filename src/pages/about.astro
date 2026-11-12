@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import TBD from '../components/TBD.astro';
+import PhotoTBD from '../components/PhotoTBD.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="About SCS Aviation | Citation Maintenance at KDED, DeLand FL"
+  description="SCS Aviation is a maintenance shop for legacy Cessna Citation jets at Hangar 14, DeLand Municipal Airport (KDED), DeLand, Florida.">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">About</span>
+      <h1>A focused shop for legacy Citations.</h1>
+      <p>SCS Aviation maintains legacy Cessna Citation jets at Hangar 14, DeLand Municipal Airport (KDED).</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap split">
+      <div class="prose">
+        <h2>Why we focus</h2>
+        <p>Legacy Citations still fly a lot of missions. They reward owners who keep them right. We chose to focus on this one family of jets.</p>
+        <h2>Our story</h2>
+        <TBD block label="shop history, approved by the owner" />
+        <h2>Leadership and team</h2>
+        <TBD block label="owner bio and team, approved for public use" />
+        <h2>Credentials</h2>
+        <TBD block label="certificates, ratings, and insurance, exact approved wording" />
+      </div>
+      <div class="grid">
+        <PhotoTBD label="Hangar 14 exterior" ratio="16 / 10" />
+        <PhotoTBD label="Team at work on a Citation" ratio="16 / 10" />
+      </div>
+    </div>
+  </section>
+  <CTA />
+</Base>

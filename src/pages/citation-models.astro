@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import TBD from '../components/TBD.astro';
+import CTA from '../components/CTA.astro';
+import { withBase } from '../config';
+const models = [
+  ['Citation I', '500'], ['Citation I/SP', '501'], ['Citation II', '550'], ['Citation II/SP', '551'],
+  ['Citation S/II', 'S550'], ['Citation Bravo', '550'], ['Citation V', '560'], ['Citation Ultra', '560'],
+  ['Citation Encore', '560'], ['Citation Excel', '560XL'], ['Citation III / VI / VII', '650'], ['CitationJet', '525'],
+];
+---
+<Base title="Legacy Cessna Citation Models | SCS Aviation, DeLand FL (KDED)"
+  description="Legacy Cessna Citation models and SCS Aviation maintenance at DeLand Municipal Airport (KDED), DeLand, Florida. Find your model and request a quote.">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Citation Models</span>
+      <h1>Built around the legacy Citation fleet.</h1>
+      <p>Find your model below. Do not see it? Request a quote and tell us what you fly.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Legacy Citation family</h2>
+        <p class="muted">Model support is being confirmed by the shop. Each card is marked until then.</p>
+      </div>
+      <div class="grid grid-4">
+        {models.map(([name, code]) => (
+          <div class="card model-card">
+            <h3>{name} <span class="code">Model {code}</span></h3>
+            <p><TBD label="confirm SCS support" /></p>
+            <a href={withBase('/request-a-quote/')}>Quote for this model</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CTA title="Fly something else?" text="Tell us the model and tail number. We will let you know if it is a fit." />
+</Base>
